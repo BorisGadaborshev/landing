@@ -1,42 +1,32 @@
 import styled from 'styled-components'
+import { u } from '../design'
 
-const Card = styled.aside`
+const Group = styled.div`
   position: absolute;
-  right: -4.6rem;
-  top: -1rem;
-  width: min(43vw, 540px);
-  min-height: 530px;
-  padding: 7.2rem 3rem 3rem;
-  border-radius: 20px;
-  background-image: url('/images/letter-paper-289ebe.png');
-  background-size: cover;
-  background-position: center;
-  box-shadow: 8px 41px 4px rgba(0, 0, 0, 0.25);
+  left: ${u(604)};
+  top: ${u(-10.51)};
+  width: ${u(910.38)};
+  height: ${u(897.27)};
   opacity: 0.91;
-  filter: blur(0.4px);
-  transform: rotate(-3deg);
-  z-index: 0;
-
-  @media (max-width: 1340px) {
-    display: none;
-  }
+  filter: blur(${u(1)})
+    drop-shadow(${u(8)} ${u(41)} ${u(4)} rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+  z-index: 1;
 `
 
-const Text = styled.p`
-  margin: 0;
-  color: #1f1f1f;
-  font-family: 'Brush Script MT', 'Segoe Script', cursive;
-  font-size: clamp(1.8rem, 2.6vw, 2.7rem);
-  line-height: 1.25;
-  white-space: pre-line;
+const LetterImage = styled.img`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 `
 
 export function LetterCard() {
   return (
-    <Card aria-hidden="true">
-      <Text>
-        {`Дорогая моя,\nкак хочется снова увидеть твою улыбку, услышать твой смех...\n\nЗдесь тяжело, но мысли о тебе греют сильнее любого огня.\nВернусь с Победой и будем вместе, как мечтали.`}
-      </Text>
-    </Card>
+    <Group aria-hidden="true">
+      <LetterImage src="/images/letter-corner-from-figma.png" alt="" />
+    </Group>
   )
 }

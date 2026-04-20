@@ -1,51 +1,55 @@
 import styled from 'styled-components'
-
-const Header = styled.header`
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.6rem, 1.5vw, 1.25rem);
-  padding-left: clamp(0rem, 0.6vw, 0.6rem);
-`
+import { u } from '../design'
 
 const Title = styled.h1`
+  position: absolute;
   margin: 0;
-  max-width: 650px;
-  font-size: clamp(2.1rem, 5vw, 4.5rem);
-  line-height: 0.81;
+  left: ${u(70)};
+  top: ${u(240)};
+  width: ${u(650)};
+  font-family: Roboto, sans-serif;
   font-weight: 800;
-  background: linear-gradient(180deg, #ffefd8 30%, #c9872b 100%);
+  font-size: ${u(72)};
+  line-height: 0.8056;
+  background: linear-gradient(
+    182deg,
+    rgba(255, 239, 216, 1) 30%,
+    rgba(201, 135, 43, 1) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-  }
+  filter: drop-shadow(0 ${u(4)} ${u(4)} rgba(0, 0, 0, 0.25));
+  z-index: 2;
 `
 
 const Subtitle = styled.p`
+  position: absolute;
   margin: 0;
-  max-width: 760px;
-  font-size: clamp(1.1rem, 2.2vw, 1.875rem);
-  line-height: 1.17;
-  background: linear-gradient(205deg, #f1d5c5 19%, #c5a28e 100%);
+  left: ${u(70)};
+  top: ${u(397)};
+  width: ${u(600)};
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: ${u(30)};
+  line-height: 1.171875;
+  background: linear-gradient(
+    205deg,
+    rgba(241, 213, 197, 1) 19%,
+    rgba(197, 162, 142, 1) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-
-  @media (max-width: 768px) {
-    max-width: 100%;
-  }
+  filter: drop-shadow(0 ${u(4)} ${u(4)} rgba(0, 0, 0, 0.25));
+  z-index: 2;
 `
 
 export function HeaderSection() {
   return (
-    <Header>
+    <>
       <Title>Оживите фотографии ко Дню Победы</Title>
       <Subtitle>Подарите новую жизнь вашим дорогим воспоминаниям.</Subtitle>
-    </Header>
+    </>
   )
 }
