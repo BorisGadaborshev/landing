@@ -1,69 +1,146 @@
-import { useState } from 'react'
 import styled from 'styled-components'
+import { HeaderSection } from './components/HeaderSection'
+import { InstructionSection } from './components/InstructionSection'
+import { LetterCard } from './components/LetterCard'
+import { TemplateList } from './components/TemplateList'
+import { UploadSection } from './components/UploadSection'
 
-const Wrapper = styled.main`
+const Page = styled.main`
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at top, #1f2937 0%, #0f172a 60%, #020617 100%);
-  color: #e2e8f0;
-  padding: 2rem;
+  padding: 0 0 2.5rem;
+  background: #0e1116;
+  color: #0e1116;
+  overflow: hidden;
+`
+
+const Backdrop = styled.div`
+  position: fixed;
+  inset: 0;
+  background-image: url('/images/hero-background-7eaeba.png');
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.46;
+  filter: blur(4px);
+  pointer-events: none;
+`
+
+const Content = styled.div`
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(1.1rem, 2vw, 1.7rem) clamp(1rem, 3vw, 3.125rem) 0;
+
+  @media (max-width: 768px) {
+    padding-inline: 0.8rem;
+  }
 `
 
 const Card = styled.section`
-  width: min(560px, 100%);
-  border-radius: 20px;
-  background: rgba(15, 23, 42, 0.75);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.5);
-  padding: 2rem;
+  position: relative;
+  margin-top: clamp(8rem, 14vw, 17rem);
+  background: #ebe6df;
+  border-radius: 35px;
+  box-shadow: 4px -6px 12px rgba(0, 0, 0, 0.48);
+  padding: clamp(1.3rem, 2vw, 1.9rem) clamp(1rem, 1.6vw, 1.55rem)
+    clamp(1.35rem, 2.3vw, 2.25rem);
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+    border-radius: 22px;
+  }
+`
+
+const CardHeading = styled.h2`
+  margin: 0 0 clamp(0.65rem, 1.2vw, 1rem);
+  font-size: clamp(2rem, 4.8vw, 4.5rem);
+  line-height: 0.81;
+  font-weight: 500;
   text-align: center;
 `
 
-const Title = styled.h1`
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-`
-
-const Description = styled.p`
-  margin: 0;
-  color: #94a3b8;
-`
-
-const CounterButton = styled.button`
-  margin-top: 1.5rem;
+const Divider = styled.hr`
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: #f8fafc;
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-top: 2px solid #404040;
+  margin: 0 0 clamp(0.85rem, 1.3vw, 1.25rem);
+`
 
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.35);
+const MainGrid = styled.div`
+  display: grid;
+  grid-template-columns: minmax(350px, 613px) minmax(300px, 537px);
+  justify-content: space-between;
+  align-items: start;
+  gap: clamp(1rem, 2vw, 2rem);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+`
+
+const Actions = styled.div`
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+
+  @media (max-width: 1024px) {
+    gap: 0.75rem;
+  }
+`
+
+const GenerateButton = styled.button`
+  justify-self: end;
+  border: none;
+  border-radius: 999px;
+  background: #0e1116;
+  color: #ebe6df;
+  padding: clamp(0.85rem, 1.4vw, 1.375rem) clamp(1.6rem, 4vw, 6.25rem);
+  font-size: clamp(1.1rem, 2.2vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.17;
+  cursor: pointer;
+
+  @media (max-width: 1024px) {
+    justify-self: stretch;
+    padding-inline: 1.5rem;
+  }
+`
+
+const PriceHint = styled.p`
+  margin: 0;
+  justify-self: end;
+  color: #0e1116;
+  opacity: 0.8;
+  font-size: clamp(0.95rem, 1.6vw, 1.625rem);
+  line-height: 1.17;
+
+  @media (max-width: 1024px) {
+    justify-self: center;
   }
 `
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <Wrapper>
-      <Card>
-        <Title>React + TypeScript + Vite</Title>
-        <Description>
-          Проект готов. Стили оформлены через styled-components.
-        </Description>
-        <CounterButton onClick={() => setCount((value) => value + 1)}>
-          Нажато: {count}
-        </CounterButton>
-      </Card>
-    </Wrapper>
+    <Page>
+      <Backdrop />
+      <Content>
+        <LetterCard />
+        <HeaderSection />
+        <Card>
+          <CardHeading>Оживите свою фотографию</CardHeading>
+          <Divider />
+          <InstructionSection />
+          <Divider />
+          <MainGrid>
+            <UploadSection />
+            <Actions>
+              <TemplateList />
+              <GenerateButton type="button">Сгенерировать</GenerateButton>
+              <PriceHint>(оплата QR-кодом; 189 руб)</PriceHint>
+            </Actions>
+          </MainGrid>
+        </Card>
+      </Content>
+    </Page>
   )
 }
 

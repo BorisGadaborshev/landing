@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: Roboto, Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  background: #0e1116;
 }
 
 *,
