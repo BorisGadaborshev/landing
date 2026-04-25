@@ -3,29 +3,29 @@ import { u } from '../design'
 
 const Group = styled.div`
   position: absolute;
-  left: ${u(-38)};
-  top: ${u(-20)};
-  width: ${u(1516)};
+  left: 50%;
+  top: 0;
+  width: 100vw;
   height: ${u(809)};
+  transform: translateX(-50%);
   filter: blur(${u(6)});
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 `
 
 const BaseLayer = styled.div`
   position: absolute;
   inset: 0;
   background: #d9d9d9;
-  border-radius: ${u(20)};
 `
 
 const HeroImage = styled.img`
   position: absolute;
-  left: ${u(-20)};
-  top: ${u(-60)};
-  width: ${u(1536)};
-  height: ${u(1024)};
-  object-fit: fill;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `
 
 const Vignette = styled.div`

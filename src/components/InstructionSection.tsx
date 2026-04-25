@@ -15,7 +15,6 @@ const Heading = styled.h3`
   margin: 0;
   left: 0;
   top: 0;
-  width: ${u(385)};
   height: ${u(35)};
   font-family: Roboto, sans-serif;
   font-weight: 500;
@@ -29,6 +28,7 @@ const Steps = styled.div`
   top: ${u(44)};
   display: flex;
   align-items: flex-start;
+  margin-top: ${u(20)};
 `
 
 const Step = styled.p`
@@ -43,7 +43,8 @@ const Step = styled.p`
 
 const StepTitle = styled.strong`
   display: block;
-  font-weight: 500;
+  font-weight: 500
+  font-style: underline;
 `
 
 export function InstructionSection() {
@@ -52,15 +53,15 @@ export function InstructionSection() {
       <Heading>Как оживить фотографию?</Heading>
       <Steps>
         <Step>
-          <StepTitle>Загрузите фотографию</StepTitle>
+          <StepTitle>1. Загрузите фотографию</StepTitle>
           {'Выберите изображение с одним или несколькими людьми.\n'}
-          <StepTitle>Выберите шаблон анимации</StepTitle>
+          <StepTitle>2. Выберите шаблон анимации</StepTitle>
           {'Определите, как фото оживёт: движение, эмоция или сцена.'}
         </Step>
         <Step>
-          <StepTitle>Нажмите «Сгенерировать»</StepTitle>
+          <StepTitle>3. Нажмите «Сгенерировать»</StepTitle>
           {'Подождите несколько секунд — система создаст видео.\n'}
-          <StepTitle>Скачайте результат</StepTitle>
+          <StepTitle>4. Скачайте результат</StepTitle>
           {'Готовое оживлённое видео можно сохранить и поделиться.'}
         </Step>
       </Steps>

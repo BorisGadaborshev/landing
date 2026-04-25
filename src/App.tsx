@@ -15,20 +15,22 @@ const Page = styled.main`
 
 const Stage = styled.div`
   position: relative;
+  z-index: 1;
   width: ${u(1440)};
   height: ${u(1942)};
   margin: 0 auto;
   overflow: hidden;
   border-radius: ${u(20)};
-  background: #0e1116;
+  background: transparent;
 `
 
 function App() {
   return (
     <Page>
+      <HeroBackdrop />
       <Stage>
-        <HeroBackdrop />
         <LetterCard />
+        {/* <img src="/images/letter-corner-from-figma.png" alt="" /> */}
         <HeaderSection />
         <MainCard />
       </Stage>

@@ -16,6 +16,11 @@ type TemplateOption = {
   imageSize: number
 }
 
+type TemplateListProps = {
+  selectedOptionId: string
+  onSelectOption: (id: string) => void
+}
+
 const options: TemplateOption[] = [
   {
     id: 'wave',
@@ -26,7 +31,7 @@ const options: TemplateOption[] = [
     description: 'Рука плавно поднимается, человек здоровается.',
     descriptionTop: 77,
     descriptionWidth: 233,
-    image: '/images/template-1.png',
+    image: '/images/output_1.gif',
     imageLeft: -13.38,
     imageTop: 0,
     imageSize: 202.76,
@@ -40,7 +45,7 @@ const options: TemplateOption[] = [
     description: 'Голова слегка наклоняется, появляется улыбка.',
     descriptionTop: 78,
     descriptionWidth: 233,
-    image: '/images/template-2.png',
+    image: '/images/output_2.gif',
     imageLeft: -13.38,
     imageTop: 0,
     imageSize: 202.76,
@@ -52,9 +57,9 @@ const options: TemplateOption[] = [
     titleTop: 20,
     titleWidth: 178,
     description: 'Люди поворачиваются друг к другу, обнимаются, улыбаются.',
-    descriptionTop: 56,
+    descriptionTop: 68,
     descriptionWidth: 233,
-    image: '/images/template-3.png',
+    image: '/images/output_3.gif',
     imageLeft: -9.26,
     imageTop: -4.12,
     imageSize: 185.26,
@@ -81,16 +86,34 @@ const Inner = styled.div`
   height: ${u(581)};
 `
 
-const Option = styled.article<{ $top: number }>`
+const Option = styled.button<{ $top: number; $isSelected: boolean }>`
   position: absolute;
   left: 0;
   top: ${({ $top }) => u($top)};
   width: ${u(449)};
   height: ${u(176)};
-  background: #0e1116;
+  background: ${({ $isSelected }) =>
+    $isSelected ? 'rgba(120, 120, 120, 0.35)' : '#0e1116'};
   color: #ebe6df;
   border-radius: ${u(20)};
   overflow: hidden;
+  border: ${u(3)} solid
+    ${({ $isSelected }) => ($isSelected ? 'rgba(235, 235, 235, 0.95)' : 'transparent')};
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  box-shadow: ${({ $isSelected }) =>
+    $isSelected ? `inset 0 0 0 ${u(2)} rgba(180, 180, 180, 0.55)` : 'none'};
+  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+
+  &:hover {
+    border-color: rgba(235, 230, 223, 0.55);
+  }
+
+  &:focus-visible {
+    border-color: rgba(235, 230, 223, 0.95);
+    outline: none;
+  }
 `
 
 const ThumbMask = styled.div`
@@ -104,12 +127,17 @@ const ThumbMask = styled.div`
   background: #d9d9d9;
 `
 
-const ThumbImage = styled.img<{ $left: number; $top: number; $size: number }>`
+const ThumbImage = styled.img<{
+  $left: number
+  $top: number
+  $size: number
+  $fillMask?: boolean
+}>`
   position: absolute;
-  left: ${({ $left }) => u($left)};
-  top: ${({ $top }) => u($top)};
-  width: ${({ $size }) => u($size)};
-  height: ${({ $size }) => u($size)};
+  left: ${({ $left, $fillMask }) => ($fillMask ? 0 : u($left))};
+  top: ${({ $top, $fillMask }) => ($fillMask ? 0 : u($top))};
+  width: ${({ $size, $fillMask }) => ($fillMask ? '100%' : u($size))};
+  height: ${({ $size, $fillMask }) => ($fillMask ? '100%' : u($size))};
   object-fit: cover;
   display: block;
 `
@@ -138,19 +166,30 @@ const OptionDescription = styled.p<{ $top: number; $width: number }>`
   line-height: 1;
 `
 
-export function TemplateList() {
+export function TemplateList({
+  selectedOptionId,
+  onSelectOption,
+}: TemplateListProps) {
   return (
     <Card>
       <Inner>
         {options.map((option) => (
-          <Option key={option.id} $top={option.top}>
+          <Option
+            key={option.id}
+            type="button"
+            $top={option.top}
+            $isSelected={selectedOptionId === option.id}
+            onClick={() => onSelectOption(option.id)}
+            aria-pressed={selectedOptionId === option.id}
+          >
             <ThumbMask>
               <ThumbImage
                 src={option.image}
-                alt=""
+                alt={option.title}
                 $left={option.imageLeft}
                 $top={option.imageTop}
                 $size={option.imageSize}
+                $fillMask={false}
               />
             </ThumbMask>
             <OptionTitle $top={option.titleTop} $width={option.titleWidth}>

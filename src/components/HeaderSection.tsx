@@ -27,7 +27,7 @@ const Subtitle = styled.p`
   position: absolute;
   margin: 0;
   left: ${u(70)};
-  top: ${u(397)};
+  top: ${u(435)};
   width: ${u(600)};
   font-family: Roboto, sans-serif;
   font-weight: 400;
