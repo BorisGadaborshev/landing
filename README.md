@@ -1,73 +1,55 @@
-# React + TypeScript + Vite
+# Лендинг «Оживите фотографию»
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Проект на `React + TypeScript + Vite` с вёрсткой под макет Figma и интерактивным сценарием:
+- загрузка фото с диска;
+- перетаскивание фото в зону загрузки (drag-and-drop);
+- выбор варианта анимации с визуальным выделением;
+- модальное окно оплаты при клике на кнопку «Сгенерировать».
 
-Currently, two official plugins are available:
+## Технологии
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `React 19`
+- `TypeScript`
+- `Vite`
+- `styled-components`
+- `ESLint`
 
-## React Compiler
+## Быстрый старт
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1) Установка зависимостей
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2) Запуск в режиме разработки
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+### 3) Сборка проекта
+
+```bash
+npm run build
+```
+
+### 4) Предпросмотр production-сборки
+
+```bash
+npm run preview
+```
+
+## Структура проекта
+
+- `src/App.tsx` — корневая композиция страницы.
+- `src/components/MainCard.tsx` — основной интерактивный блок.
+- `src/components/UploadSection.tsx` — зона загрузки/drag-and-drop.
+- `src/components/TemplateList.tsx` — список вариантов анимации.
+- `src/components/LetterCard.tsx` — декоративный блок письма.
+- `public/images/` — изображения и gif-ассеты для интерфейса.
+
+## Примечания
+
+- Пути вида `src="/images/..."` читаются из папки `public/images`.
+- Для корректного отображения анимаций используйте реальные `.gif` файлы в `public/images`.
