@@ -25,10 +25,10 @@ const options: TemplateOption[] = [
   {
     id: 'wave',
     top: 0,
-    title: 'Поднимет руку и машет',
+    title: 'Наклонит голову и улыбнётся',
     titleTop: 20,
     titleWidth: 250,
-    description: 'Рука плавно поднимается, человек здоровается.',
+    description: 'Голова слегка наклоняется, появляется улыбка.',
     descriptionTop: 77,
     descriptionWidth: 233,
     image: '/images/output_1.gif',
@@ -39,10 +39,10 @@ const options: TemplateOption[] = [
   {
     id: 'smile',
     top: 202,
-    title: 'Наклонит голову и улыбнётся',
+    title: 'Поднимет руку и машет',
     titleTop: 21,
     titleWidth: 258,
-    description: 'Голова слегка наклоняется, появляется улыбка.',
+    description: 'Рука плавно поднимается, человек здоровается.',
     descriptionTop: 78,
     descriptionWidth: 233,
     image: '/images/output_2.gif',
@@ -74,8 +74,8 @@ const Card = styled.section`
   height: ${u(613)};
   background: #ebe6df;
   border-radius: ${u(20)};
-  box-shadow: ${u(3)} ${u(4)} ${u(4)} rgba(0, 0, 0, 0.47),
-    inset 0 ${u(4)} ${u(4)} rgba(0, 0, 0, 0.36);
+  box-shadow: ${u(2)} ${u(3)} ${u(4)} rgba(0, 0, 0, 0.33),
+    inset 0 ${u(2)} ${u(3)} rgba(0, 0, 0, 0.2);
 `
 
 const Inner = styled.div`
@@ -93,21 +93,19 @@ const Option = styled.button<{ $top: number; $isSelected: boolean }>`
   width: ${u(449)};
   height: ${u(176)};
   background: ${({ $isSelected }) =>
-    $isSelected ? 'rgba(120, 120, 120, 0.35)' : '#0e1116'};
+    $isSelected ? '#0e1116' : 'rgba(98, 98, 98, 0.62)'};
   color: #ebe6df;
-  border-radius: ${u(20)};
+  border-radius: ${u(22)};
   overflow: hidden;
-  border: ${u(3)} solid
-    ${({ $isSelected }) => ($isSelected ? 'rgba(235, 235, 235, 0.95)' : 'transparent')};
+  border: ${u(3)} solid transparent;
   cursor: pointer;
   text-align: left;
   padding: 0;
-  box-shadow: ${({ $isSelected }) =>
-    $isSelected ? `inset 0 0 0 ${u(2)} rgba(180, 180, 180, 0.55)` : 'none'};
+  box-shadow: none;
   transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
 
   &:hover {
-    border-color: rgba(235, 230, 223, 0.55);
+    border-color: rgba(235, 230, 223, 0.75);
   }
 
   &:focus-visible {

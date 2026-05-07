@@ -5,12 +5,14 @@ const Title = styled.h1`
   position: absolute;
   margin: 0;
   left: ${u(70)};
-  top: ${u(240)};
-  width: ${u(650)};
+  top: ${u(226)};
+  width: ${u(740)};
   font-family: Roboto, sans-serif;
   font-weight: 800;
-  font-size: ${u(72)};
-  line-height: 0.8056;
+  font-style: italic;
+  font-size: ${u(82)};
+  line-height: 0.83;
+  letter-spacing: ${u(0.4)};
   background: linear-gradient(
     182deg,
     rgba(255, 239, 216, 1) 30%,
@@ -20,6 +22,8 @@ const Title = styled.h1`
   background-clip: text;
   color: transparent;
   filter: drop-shadow(0 ${u(4)} ${u(4)} rgba(0, 0, 0, 0.25));
+  transform: skewX(-4deg);
+  transform-origin: left center;
   z-index: 2;
 `
 
